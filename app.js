@@ -26,9 +26,10 @@ class juego {
         inGameLevel = [[...gameLevels[currentLevel]]];
         setGameLevel(inGameLevel);
         pacPos = getPos(inGameLevel,5);  
-        
+        console.log(pacPos)
         document.addEventListener("keydown", (e) => {
             pacPos = movePacman(e.key, pacPos);
+            console.log(e.key)
         });
     };
 }

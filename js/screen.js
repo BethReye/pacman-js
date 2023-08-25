@@ -86,14 +86,18 @@ let drawLevel = () => {
 let movePacman = (dir, pos) => {
     let arrowPosX = 0,
     arrowPosY = 0;
-    let nextPos = 0,
-    prevPos = 0;
+    let nextPos = 0;
 
     if (dir === "ArrowLeft") {
         arrowPosY = pos[1];
-        arrowPosX = pos[0] - 1
-        nextPos = level[arrowPosY][arrowPosX];
-    }
+        arrowPosX = pos[0] - 1;
+    } else if (dir === "ArrowRight") {
+        arrowPosY = pos[1];
+        arrowPosX = pos[0] + 1;
+        
+    } 
+    console.log(pos)
+    nextPos = level[arrowPosY][arrowPosX];
 
     if ([0, 3, 4, 6]. includes(nextPos)) {
         level[pos[1]][pos[0]] = 0;
@@ -108,15 +112,24 @@ let drawPacman = (dir, pos) => {
     let x = pos[0] * sObj.dimension;
     let y = pos[1] * sObj.dimension;
 
+    clearRect(dir, pos);
+
     if (dir === "ArrowLeft") {
         context.beginPath();
-        context.fillStyle = "yellow";
-    }
-    context.lineTo(x + sObj.dimension)
-    con
-
-    
-}
+		context.fillStyle = "yellow";
+		context.arc(
+			x + sObj.dimension / 2,
+			y + sObj.dimension / 2,
+			sObj.dimension / 2.8,
+			Math.PI * 0.75,
+			Math.PI * 1.25,
+			true
+		);
+		context.lineTo(x + sObj.dimension / 2, y + sObj.dimension / 2);
+		context.closePath();
+		context.fill();
+ }
+} 
 
 let clearRect = (dir, pos) => {
     let cRX = pos[0];
@@ -132,8 +145,8 @@ let clearRect = (dir, pos) => {
         cRX++;
     }
     context.fillRect(
-        pos[0] * sObj.dimension,
-        pos[1] * sObj.dimension,
+        cRX * sObj.dimension,
+        cRY * sObj.dimension,
         sObj.dimension,
         sObj.dimension
     );

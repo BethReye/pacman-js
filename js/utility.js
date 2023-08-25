@@ -1,10 +1,10 @@
 let getPos = (level, toSearch) =>{
     let position = [];
     let foundIt = false;
-
+ console.log(level)
     level.forEach((element,index1) => {
         if(!foundIt){
-            position['0'] = element.findIndex((value,index)=> (foundIt = value===toSearch ? true: false))
+            position[0] = element.findIndex((value,index)=> (foundIt = value===toSearch))
         }
         position[1] = position[0] != null ? index1 : null;
         
